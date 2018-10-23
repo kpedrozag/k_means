@@ -11,14 +11,16 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 X = np.loadtxt('cluster.txt', delimiter=';')
-distorsions = []
-K = range(2, 10)
+x1 = X[:,0]
+x2 = X[:,1]
+inertias = []
+K = range(2, 11)
 for k in K:
     kmeans = KMeans(n_clusters=k)
     kmeans.fit(X)
-    distorsions.append(kmeans.inertia_)
+    inertias.append(kmeans.inertia_)
 
 fig = plt.figure()
-plt.plot(K, distorsions, 'bx-')
+plt.plot(K, inertias, 'bx')
 plt.grid(True)
 plt.title('Elbow curve')
